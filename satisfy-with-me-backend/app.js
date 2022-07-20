@@ -15,7 +15,10 @@ const io = new Server(httpServer, {
 });
 
 io.on("connection", (socket) => {
-  console.log("Client Connected");
+  socket.emit("connect", "Welcome to Satisfy with me!");
+  socket.on("chatMessage", (msg) => {
+    io.emit("sendCheck", msg);
+  });
 });
 
 // app.use(express.static(publicDirectoryPath));
